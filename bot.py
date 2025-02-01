@@ -2,8 +2,9 @@ import os
 import discord
 from discord.ext import commands
 
-# Configuration des intents (tu peux ajuster selon tes besoins)
+# Configuration des intents
 intents = discord.Intents.default()
+intents.message_content = True  # Active la lecture des messages
 
 # Création du bot avec le préfixe "!"
 bot = commands.Bot(command_prefix="!", intents=intents)
@@ -11,8 +12,7 @@ bot = commands.Bot(command_prefix="!", intents=intents)
 # Commande qui affiche le nom du bot
 @bot.command(name="nom")
 async def mon_nom(ctx):
-    # Remplace "MonBot" par le nom souhaité
-    await ctx.send("Je suis MonBot !")
+    await ctx.send(f"Je suis {bot.user.name} !")  # Affiche le vrai nom du bot
 
 if __name__ == "__main__":
     # Récupère le token depuis les variables d'environnement
